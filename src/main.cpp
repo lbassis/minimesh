@@ -5,7 +5,20 @@
 #include <memory>
 #include <tuple>
 
+
+#include <vtkSmartPointer.h>
+#include <vtkProperty.h>
+#include <vtkContourFilter.h>
+#include <vtkDataSetMapper.h>
+#include <vtkImageActor.h>
+#include <vtkImageViewer2.h>
+#include <vtkXMLImageDataReader.h>
+#include <vtkRenderWindow.h>
+#include <vtkRenderWindowInteractor.h>
+#include <vtkRenderer.h>
+
 #include "options.hpp"
+#include "viewer.hpp"
 
 void print_usage()
 {
@@ -39,6 +52,7 @@ int main(int argc, char **argv)
       return EXIT_FAILURE;
     }
     file_name = argv[2];
+    Viewer::view(file_name);
   } else if (command == "-t" || command == "--transform") {
     if (argc < 3) {
       std::cerr << "Error: missing file\n";
