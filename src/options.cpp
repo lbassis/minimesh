@@ -1,6 +1,8 @@
 #include <memory>
 
 #include "options.hpp"
+#include "viewer.hpp"
+#include "transformer.hpp"
 
 OptionsParser::OptionsParser(const std::string& file_name)
   : m_file_name(file_name)
@@ -22,6 +24,8 @@ void OptionsParser::parse(void)
 
     auto quality = m_data->get_table("quality");
     bool compute_quality = *quality->get_as<bool>("compute_quality");
+
+    Transformer::merge(meshes, compute_quality, result_file_name);
   } else if (name.compare("translate") == 0) {
     std::vector<double> coords = *transform->get_array_of<double>("translation");
 
@@ -31,6 +35,8 @@ void OptionsParser::parse(void)
 
     auto quality = m_data->get_table("quality");
     bool compute_quality = *quality->get_as<bool>("compute_quality");
+    
+    Transformer::translate(mesh, coords, compute_quality, result_file_name);
   } else {
   }
 }

@@ -13,6 +13,8 @@ include_directories(
 
 set(EXE_SOURCES
   src/options.cpp
+  src/viewer.cpp
+  src/transformer.cpp
   # Add other source files here, one by line
 )
 
